@@ -4,7 +4,7 @@ const ArticleSchema = mongoose.Schema(
     {
         email: {
             type: String,
-            required: [true, "Please enter name"]
+            required: [true, "Please enter email"]
         },
         image: {
             type: String,
