@@ -31,6 +31,23 @@ app.post('/articles', async (req, res) => {
     }
 });
 
+app.put('/article/:id', async (req, res) => {
+    try {
+        const {id} = req.params;
+
+        const article = await Article.findByIdAndUpdate(id, req.body);
+
+        if (!article) {
+            return res.status(404).json({message: "Article not found"});
+        }
+
+        const updatedArticle = await Article.findById(id);
+        res.status(200).json(updatedArticle);
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+});
+
 app.get('/classes/:id', async (req, res) => {
     try {
         const { id } = req.params;
@@ -41,12 +58,29 @@ app.get('/classes/:id', async (req, res) => {
     }
 });
 
-app.post('/classes', async (req, res) => {
+app.post('/classess', async (req, res) => {
     try {
         const classes =  await Class.create(req.body);
         res.status(200).json(classes)
     } catch (error) {
         res.status(500).json({message: error.message})
+    }
+});
+
+app.put('/classes/:id', async (req, res) => {
+    try {
+        const {id} = req.params;
+
+        const classes = await Class.findByIdAndUpdate(id, req.body);
+
+        if (!classes) {
+            return res.status(404).json({message: "Class not found"});
+        }
+
+        const updatedClass = await Class.findById(id);
+        res.status(200).json(updateClass);
+    } catch (error) {
+        res.status(500).json({message: error.message});
     }
 });
 
@@ -66,6 +100,23 @@ app.post('/comments', async (req, res) => {
         res.status(200).json(comment)
     } catch (error) {
         res.status(500).json({message: error.message})
+    }
+});
+
+app.put('/comment/:id', async (req, res) => {
+    try {
+        const {id} = req.params;
+
+        const comment = await Comment.findByIdAndUpdate(id, req.body);
+
+        if (!comments) {
+            return res.status(404).json({message: "Comment not found"});
+        }
+
+        const updatedComment = await Comment.findById(id);
+        res.status(200).json(updateComment);
+    } catch (error) {
+        res.status(500).json({message: error.message});
     }
 });
 
