@@ -1,9 +1,20 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const { MongoClient, ServerApiVersion } = require('mongodb');
-
+const { MongoClient, ServerApiVersion } = require('mongodb')
 const app = express();
+
+app.use(express.json());
+
+app.get('/', (req, res) => {
+    res.send("Welcome to my API");
+});
+
+
+app.post('/articles', (req, res) => {
+    console.log(req.body);
+    res.send(req.body);
+});
 
 const uri = "mongodb+srv://christofernathanael116:8uBzTgIqxssAtGa4@dialog-sunyi.qlyn7xg.mongodb.net/?retryWrites=true&w=majority&appName=Dialog-Sunyi";
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -29,28 +40,15 @@ async function run() {
 run().catch(console.dir);
 
 
-// Middleware
-// app.use(bodyParser.json());
-
-// Routes
-// const indexRouter = require('./routes/index');
-// const articlesRouter = require('./routes/articles');
-// const classesRouter = require('./routes/classes');
-// const faqsRouter = require('./routes/faqs');
-
-// app.use('/', indexRouter);
-// app.use('/articles', articlesRouter);
-// app.use('/classes', classesRouter);
-// app.use('/faqs', faqsRouter);
+app.listen(3000, () => {
+    console.log('server is running');
+});
 
 
 // Connect to MongoDB
 mongoose.connect(uri, { /* connection options */ })
   .then(() => {
     console.log("Connected to database");
-    app.listen(3000, () => {
-        console.log('server is running');
-    });
 })
   .catch(() => {
     console.error("Connection failed");
