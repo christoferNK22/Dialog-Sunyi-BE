@@ -1,7 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const Article = require('./models/article.model.js');
-const Class = require('./models/class.model.js');
 const articleRoute = require('./routes/article.route.js');
 const classRoute = require('./routes/class.route.js');
 const commentRoute = require('./routes/comment.route.js');
@@ -18,48 +16,6 @@ app.use("/comment", commentRoute);
 
 app.get('/', (req, res) => {
     res.send("Welcome to my API");
-});
-
-// get class
-app.get('/classes/:id', async (req, res) => {
-    try {
-        const { id } = req.params;
-        const classes = await Class.findById(id);
-        res.status(200).json(classes)
-    } catch {
-        res.status(500).json({message: error.message});
-    }
-});
-
-// create class
-app.post('/classes', async (req, res) => {
-    try {
-        const classes =  await Class.create(req.body);
-        res.status(200).json(classes)
-    } catch (error) {
-        res.status(500).json({message: error.message})
-    }
-});
-
-// get comment
-app.get('/comments/:id', async (req, res) => {
-    try {
-        const { id } = req.params;
-        const comment = await Comment.findById(id);
-        res.status(200).json(comment)
-    } catch {
-        res.status(500).json({message: error.message});
-    }
-});
-
-// create comments
-app.post('/comments', async (req, res) => {
-    try {
-        const comment =  await Comment.create(req.body);
-        res.status(200).json(comment)
-    } catch (error) {
-        res.status(500).json({message: error.message})
-    }
 });
 
 app.listen(3000, () => {
