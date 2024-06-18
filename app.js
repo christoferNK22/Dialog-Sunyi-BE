@@ -7,11 +7,13 @@ const Class = require('./models/class.model.js');
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({extended: false}));
 
 app.get('/', (req, res) => {
     res.send("Welcome to my API");
 });
 
+// get article
 app.get('/articles/:id', async (req, res) => {
     try {
         const { id } = req.params;
@@ -22,6 +24,7 @@ app.get('/articles/:id', async (req, res) => {
     }
 });
 
+// create article
 app.post('/articles', async (req, res) => {
     try {
         const article =  await Article.create(req.body);
@@ -31,6 +34,7 @@ app.post('/articles', async (req, res) => {
     }
 });
 
+// edit article
 app.put('/article/:id', async (req, res) => {
     try {
         const {id} = req.params;
@@ -48,6 +52,24 @@ app.put('/article/:id', async (req, res) => {
     }
 });
 
+// delete a article
+app.delete('/article/:id', async (req, res) => {
+    try {
+        const {id} = req.params;
+
+        const article = await Article.findByIdAndDelete(id);
+
+        if (!article) {
+            return res.status(404).json({ message: "Article not found" });
+        }
+
+        res.status(200).json({ message: "Article deleted successfully" });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+// get class
 app.get('/classes/:id', async (req, res) => {
     try {
         const { id } = req.params;
@@ -58,6 +80,7 @@ app.get('/classes/:id', async (req, res) => {
     }
 });
 
+// create class
 app.post('/classess', async (req, res) => {
     try {
         const classes =  await Class.create(req.body);
@@ -67,6 +90,7 @@ app.post('/classess', async (req, res) => {
     }
 });
 
+// edit class
 app.put('/classes/:id', async (req, res) => {
     try {
         const {id} = req.params;
@@ -84,6 +108,24 @@ app.put('/classes/:id', async (req, res) => {
     }
 });
 
+// delete a class
+app.delete('/classes/:id', async (req, res) => {
+    try {
+        const {id} = req.params;
+
+        const classes = await Class.findByIdAndDelete(id);
+
+        if (!classes) {
+            return res.status(404).json({ message: "Class not found" });
+        }
+
+        res.status(200).json({ message: "Class deleted successfully" });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+// get comment
 app.get('/comments/:id', async (req, res) => {
     try {
         const { id } = req.params;
@@ -94,6 +136,7 @@ app.get('/comments/:id', async (req, res) => {
     }
 });
 
+// create comments
 app.post('/comments', async (req, res) => {
     try {
         const comment =  await Comment.create(req.body);
@@ -103,6 +146,7 @@ app.post('/comments', async (req, res) => {
     }
 });
 
+// edit comment
 app.put('/comment/:id', async (req, res) => {
     try {
         const {id} = req.params;
@@ -117,6 +161,23 @@ app.put('/comment/:id', async (req, res) => {
         res.status(200).json(updateComment);
     } catch (error) {
         res.status(500).json({message: error.message});
+    }
+});
+
+// delete a comment
+app.delete('/comment/:id', async (req, res) => {
+    try {
+        const {id} = req.params;
+
+        const comment = await Comment.findByIdAndDelete(id);
+
+        if (!comment) {
+            return res.status(404).json({ message: "Comment not found" });
+        }
+
+        res.status(200).json({ message: "Article comment successfully" });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
     }
 });
 
