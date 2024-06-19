@@ -31,12 +31,12 @@ node app.js
 
 | Endpoint | Usage | Example | Method |
 |----------|-------|---------|----------|
-| `/article` | Add Article | - |  POST  |
-| `/article` | Get Article | - |  GET   |
-| `/article/:id` | Get Article by Id | `/articles/65616bd5f02afdb3f4f95a01` |   GET  |
-| `/class` | Add Class | - |  POST  |
-| `/class` | Get Class | - |  GET   |
-| `/class/:id` | Get Class by Id | `/class/65616bd5f02afdb3f4f95a01` |   GET  |
-| `/comment` | Add Comment | - |  POST  |
-| `/comment` | Get Comment | - |  GET   |
-| `/comment/:id` | Get Comment by Id | `/comment/65616bd5f02afdb3f4f95a01` |   GET  |
+| `/api/article` | Add Article | - |  POST  |
+| `/api/articles` | Get Article | - |  GET   |
+| `/api/article/:id` | Get Article by Id | `/article/65616bd5f02afdb3f4f95a01` |   GET  |
+| `/api/class` | Add Class | - |  POST  |
+| `/api/classes` | Get Class | - |  GET   |
+| `/api/class/:id` | Get Class by Id | `/class/65616bd5f02afdb3f4f95a01` |   GET  |
+| `/api/comment` | Add Comment | - |  POST  |
+| `/api/comments` | Get Comment | - |  GET   |
+| `/api/comment/:id` | Get Comment by Id | `/comment/65616bd5f02afdb3f4f95a01` |   GET  |
