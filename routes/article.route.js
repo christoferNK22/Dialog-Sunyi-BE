@@ -3,11 +3,10 @@ const Article = require("../models/article.model.js");
 const router = express.Router();
 const {getArticles, getArticle, createArticle} = require('../controllers/article.controller.js');
 
+router.get('/articles', getArticles);
 
-router.get('/', getArticles);
+router.get('/article/:id', getArticle);
 
-router.get('/:id', getArticle);
-
-router.post("/", createArticle);
+router.post("/article/", createArticle);
 
 module.exports = router;
