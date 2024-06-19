@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const ArticleSchema = mongoose.Schema(
     {
-        NamedNodeMap: {
+        name: {
             type: String,
             required: [true, "Please enter name"]
         },
