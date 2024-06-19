@@ -8,11 +8,8 @@ const getArticles =  async (req, res) => {
             message: "Berhasil mendapatkan semua artikel",
             data: articles
         });
-    } catch (error) {
-        res.status(500).json({
-            status: "error",
-            message: "Kesalahan server",
-        });
+    } catch {
+        res.status(500).json({message: error.message});
     }
 }
 
@@ -33,12 +30,8 @@ const getArticle = async (req, res) => {
             message: "Berhasil mendapatkan artikel",
             data: article,
           });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({
-          status: "error",
-          message: "Kesalahan server",
-        });
+    } catch {
+        res.status(500).json({message: error.message});
     }
 };
 
@@ -52,21 +45,7 @@ const createArticle = async (req, res) => {
         data: savedArticle,
       });
     } catch (error) {
-      console.error(error);
-  
-      if (error.name === 'ValidationError') {
-        const validationErrors = Object.values(error.errors).map(err => err.message);
-        return res.status(400).json({
-          status: "error",
-          message: "Validasi gagal",
-          errors: validationErrors,
-        });
-      }
-  
-      res.status(500).json({
-        status: "error",
-        message: "Kesalahan server",
-      });
+        res.status(500).json({message: error.message})
     }
   };
   
