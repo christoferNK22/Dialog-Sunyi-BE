@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 const ArticleSchema = mongoose.Schema(
     {
-        email: {
+        NamedNodeMap: {
             type: String,
-            required: [true, "Please enter email"]
+            required: [true, "Please enter name"]
         },
         image: {
             type: String,
@@ -17,6 +17,10 @@ const ArticleSchema = mongoose.Schema(
         date: {
             type: Date,
             default: Date.now
+        },
+        author: {
+            type: String,
+            require: true
         }
     },
     {
