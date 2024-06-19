@@ -16,11 +16,11 @@ const ClassSchema = mongoose.Schema(
         },
         realization_date: {
             type: Date, 
-            required: true
+            required: Date.now
         },
         registration_date: {
             type: Date,
-            required: true
+            required: Date.now
         },
         poster_img: {
             type: String,

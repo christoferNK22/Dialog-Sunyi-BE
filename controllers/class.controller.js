@@ -44,6 +44,11 @@ const getClass = async (req, res) => {
 const createClass = async (req, res) => {
     try {
         const newClass =  await Class.create(req.body);
+
+        if (!newClass.createdAt) {
+            newClass.createdAt = new Date();
+        }
+
         const savedClass = await newClass.save();
         res.status(200).json({
             status: "success",
