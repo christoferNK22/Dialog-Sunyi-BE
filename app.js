@@ -11,7 +11,7 @@ app.use(express.urlencoded({extended: false}));
 
 // routes
 app.use("/article", articleRoute);
-app.use("/classes", classRoute);
+app.use("/class", classRoute);
 app.use("/comment", commentRoute);
 
 app.get('/', (req, res) => {
