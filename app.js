@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const articleRoute = require('./routes/article.route.js');
 const classRoute = require('./routes/class.route.js');
 const commentRoute = require('./routes/comment.route.js');
@@ -7,12 +8,13 @@ const app = express();
 
 // middleware
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({extended: false}));
 
 // routes
-app.use("/article", articleRoute);
-app.use("/class", classRoute);
-app.use("/comment", commentRoute);
+app.use("/api", articleRoute);
+app.use("/api", classRoute);
+app.use("/api", commentRoute);
 
 app.get('/', (req, res) => {
     res.send("Welcome to my API");
