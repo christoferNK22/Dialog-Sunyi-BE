@@ -30,9 +30,13 @@ const getArticle = async (req, res) => {
             message: "Berhasil mendapatkan artikel",
             data: article,
           });
-    } catch {
-        res.status(500).json({message: error.message});
-    }
+    } catch (error) { 
+        console.error(error); 
+        res.status(500).json({
+          status: "error",
+          message: "Kesalahan server", 
+        });
+      }
 };
 
 const createArticle = async (req, res) => {
