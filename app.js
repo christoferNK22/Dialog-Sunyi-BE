@@ -18,7 +18,10 @@ app.get('/', (req, res) => {
     res.send("Welcome to my API");
 });
 
-app.listen(3000, () => {
+// call port from env
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
     console.log('server is running');
 });
 
