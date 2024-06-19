@@ -3,7 +3,11 @@ const Comment = require('../models/comment.model');
 const getComments =  async (req, res) => {
     try {
         const comments = await Comment.find();
-        res.status(200).json(comments)
+        res.status(200).json({
+            status: "success",
+            message: "Berhasil mendapatkan semua comment",
+            data: comments
+        })
     } catch {
         res.status(500).json({message: error.message});
     }
