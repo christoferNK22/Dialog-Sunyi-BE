@@ -16,19 +16,21 @@ const getComments =  async (req, res) => {
 const getComment = async (req, res) => {
     try {
         const { id } = req.params;
-        const comment = await Comment.findById(id);
+        const commentId = mongoose.Types.ObjectId(id);
         
-        if (!comment) {
+        const foundComment = await Comment.findById(commentId);
+        
+        if (!foundComment) {
             return res.status(404).json({
               status: "error",
-              message: "Comment tidak ditemukan",
+              message: "Komentar tidak ditemukan",
             });
           }
       
           res.status(200).json({
             status: "success",
-            message: "Berhasil mendapatkan comment",
-            data: comment,
+            message: "Berhasil mendapatkan komentar",
+            data: foundComment,
           });
     } catch (error) { 
         console.error(error); 
@@ -45,7 +47,7 @@ const createComment = async (req, res) => {
         const savedComment = await newComment.save();
         res.status(200).json({
             status: "success",
-            message: "Comment sudah dikirim",
+            message: "Komentar sudah dikirim",
             data: savedComment,
         });
     } catch (error) {

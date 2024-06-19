@@ -16,9 +16,11 @@ const getArticles =  async (req, res) => {
 const getArticle = async (req, res) => {
     try {
         const { id } = req.params;
-        const article = await Article.findById(id);
+        const articleId = mongoose.Types.ObjectId(id);
         
-        if (!article) {
+        const foundArticle = await Article.findById(articleId);
+        
+        if (!foundArticle) {
             return res.status(404).json({
               status: "error",
               message: "Artikel tidak ditemukan",
@@ -28,7 +30,7 @@ const getArticle = async (req, res) => {
           res.status(200).json({
             status: "success",
             message: "Berhasil mendapatkan artikel",
-            data: article,
+            data: foundArticle,
           });
     } catch (error) { 
         console.error(error); 
