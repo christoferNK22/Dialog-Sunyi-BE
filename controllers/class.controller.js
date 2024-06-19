@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const Class = require('../models/class.model');
 
 const getClasses =  async (req, res) => {
