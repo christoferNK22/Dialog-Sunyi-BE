@@ -10,6 +10,10 @@ const ClassSchema = mongoose.Schema(
             type: String,
             required: true
         },
+        region: {
+            type: String,
+            required: true
+        },
         realization_date: {
             type: Date, 
             required: true
