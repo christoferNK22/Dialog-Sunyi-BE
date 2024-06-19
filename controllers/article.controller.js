@@ -15,31 +15,33 @@ const getArticles =  async (req, res) => {
 
 const getArticle = async (req, res) => {
     try {
-        const { id } = req.params;
-        const articleId = mongoose.Types.ObjectId(id);
-        
-        const foundArticle = await Article.findById(articleId);
-        
-        if (!foundArticle) {
-            return res.status(404).json({
-              status: "error",
-              message: "Artikel tidak ditemukan",
-            });
-          }
-      
-          res.status(200).json({
-            status: "success",
-            message: "Berhasil mendapatkan artikel",
-            data: foundArticle,
-          });
-    } catch (error) { 
-        console.error(error); 
-        res.status(500).json({
+      const { id } = req.params;
+      const articleId = mongoose.Types.ObjectId(id);
+    
+      const foundArticle = await Article.findById(articleId);
+    
+      if (!foundArticle) {
+        return res.status(404).json({
           status: "error",
-          message: "Kesalahan server", 
+          message: "Artikel tidak ditemukan",
         });
       }
-};
+
+      const response = {
+        status: "success",
+        message: "Berhasil mendapatkan artikel",
+        data: foundArticle,
+      };
+    
+      res.status(200).json(response);
+    } catch (error) { 
+      console.error(error); 
+      res.status(500).json({
+        status: "error",
+        message: "Kesalahan server", 
+      });
+    }
+  };
 
 const createArticle = async (req, res) => {
     try {
