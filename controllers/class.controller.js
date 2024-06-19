@@ -56,7 +56,7 @@ const createClass = async (req, res) => {
         const savedClass = await newClass.save();
         res.status(200).json({
             status: "success",
-            message: "Artikel berhasil dibuat",
+            message: "Kelas berhasil dibuat",
             data: savedClass,
         });
     } catch (error) {
