@@ -30,7 +30,7 @@ const ClassSchema = mongoose.Schema(
         },
         link: {
             type: String,
-            required: true 
+            required: false 
         },
         fee: {
             type: Number,
