@@ -17,16 +17,37 @@ const getComment = async (req, res) => {
     try {
         const { id } = req.params;
         const comment = await Comment.findById(id);
-        res.status(200).json(comment)
-    } catch {
-        res.status(500).json({message: error.message});
-    }
+        
+        if (!comment) {
+            return res.status(404).json({
+              status: "error",
+              message: "Comment tidak ditemukan",
+            });
+          }
+      
+          res.status(200).json({
+            status: "success",
+            message: "Berhasil mendapatkan comment",
+            data: comment,
+          });
+    } catch (error) { 
+        console.error(error); 
+        res.status(500).json({
+          status: "error",
+          message: "Kesalahan server", 
+        });
+      }
 };
 
 const createComment = async (req, res) => {
     try {
-        const comment =  await Comment.create(req.body);
-        res.status(200).json(comment)
+        const newComment =  await Comment.create(req.body);
+        const savedComment = await newComment.save();
+        res.status(200).json({
+            status: "success",
+            message: "Comment sudah dikirim",
+            data: savedComment,
+        });
     } catch (error) {
         res.status(500).json({message: error.message})
     }
