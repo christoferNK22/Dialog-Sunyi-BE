@@ -9,10 +9,20 @@ const getArticles =  async (req, res) => {
             message: "Berhasil mendapatkan semua artikel",
             data: articles
         });
-    } catch {
-        res.status(500).json({message: error.message});
+    } catch (error) {
+        if (error.name === 'MongoError') {
+          return res.status(500).json({
+            status: "error",
+            message: "Kesalahan database"
+          });
+        }
+        console.error(error);
+        res.status(500).json({
+          status: "error",
+          message: "Kesalahan server"
+        });
     }
-}
+};
 
 const getArticle = async (req, res) => {
     try {
