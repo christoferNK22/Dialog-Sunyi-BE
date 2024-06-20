@@ -7,19 +7,19 @@ const getArticles =  async (req, res) => {
         res.status(200).json({
             status: "success",
             message: "Berhasil mendapatkan semua artikel",
-            data: articles
+            data: articles,
         });
     } catch (error) {
         if (error.name === 'MongoError') {
           return res.status(500).json({
             status: "error",
-            message: "Kesalahan database"
+            message: "Kesalahan database",
           });
         }
         console.error(error);
         res.status(500).json({
           status: "error",
-          message: "Kesalahan server"
+          message: "Kesalahan server",
         });
     }
 };
@@ -30,7 +30,7 @@ const getArticle = async (req, res) => {
       const articleId = mongoose.Types.ObjectId(id);
     
       const foundArticle = await Article.findById(articleId);
-    
+        
       if (!foundArticle) {
         return res.status(404).json({
           status: "error",
@@ -38,13 +38,15 @@ const getArticle = async (req, res) => {
         });
       }
 
+      const { _id, name, image, content, author, date } = foundArticle;
+
       const response = {
-        id: foundArticle._id, 
-        name: foundArticle.name,
-        image: foundArticle.image,
-        content: foundArticle.content,
-        author: foundArticle.author,
-        date: foundArticle.date,
+        id: _id,
+        name,
+        image,
+        content,
+        author,
+        date,
       };
   
       res.status(200).json({
