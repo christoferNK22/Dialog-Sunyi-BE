@@ -17,9 +17,8 @@ const getClasses =  async (req, res) => {
 const getClass = async (req, res) => {
     try {
         const { id } = req.params;
-        const classId = mongoose.Types.ObjectId(id);
         
-        const foundClass = await Class.findById(classId);
+        const foundClass = await Class.findById(id);
         
         if (!foundClass) {
             return res.status(404).json({
@@ -27,11 +26,23 @@ const getClass = async (req, res) => {
               message: "Kelas tidak ditemukan",
             });
           }
+
+          const response = {
+            id: foundClass._id,
+            title: foundClass.title,
+            organizer: foundClass.organizer,
+            region: foundClass.region,
+            poster_img: foundClass.poster_img,
+            realization_date: foundClass.realization_date,
+            registration_date: foundClass.registration_date,
+            link: foundClass.link,
+            fee: foundClass.fee,
+          };
       
           res.status(200).json({
             status: "success",
             message: "Berhasil mendapatkan kelas",
-            data: foundClass,
+            data: response,
           });
     } catch (error) { 
         console.error(error); 

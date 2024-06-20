@@ -27,11 +27,19 @@ const getComment = async (req, res) => {
               message: "Komentar tidak ditemukan",
             });
           }
+
+          const response = {
+            id: foundComment._id,
+            name: foundComment.name,
+            comment: foundComment.comment,
+            id_artikel: foundComment.id_artikel,
+            date: foundComment.date,
+          };
       
           res.status(200).json({
             status: "success",
             message: "Berhasil mendapatkan komentar",
-            data: foundComment,
+            data: response,
           });
     } catch (error) { 
         console.error(error); 

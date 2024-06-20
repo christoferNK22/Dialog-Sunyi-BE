@@ -21,16 +21,6 @@ app.get('/', (req, res) => {
     res.send("Welcome to my API");
 });
 
-app.get('/api/article/:id', async (req, res) => {
-  try {
-    const {id} = req.params.id;
-    const article = await Article.findById(id);
-    res.status(200).json(article);
-  } catch (error) {
-    res.status(500).json(article);
-  }
-});
-
 // call port from env
 const PORT = process.env.PORT || 3000;
 
