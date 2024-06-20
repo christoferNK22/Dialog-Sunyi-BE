@@ -41,9 +41,9 @@ const getArticle = async (req, res) => {
         id: foundArticle._id,
         name: foundArticle.name,
         image: foundArticle.image,
-        content: foundArticle.image,
-        author: foundArticle.image,
-        date: foundArticle.image,
+        content: foundArticle.content,
+        author: foundArticle.author,
+        date: foundArticle.date,
       };
   
       res.status(200).json({
