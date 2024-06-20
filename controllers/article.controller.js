@@ -39,12 +39,19 @@ const getArticle = async (req, res) => {
       }
 
       const response = {
+        id: foundArticle._id, 
+        name: foundArticle.name,
+        image: foundArticle.image,
+        content: foundArticle.content,
+        author: foundArticle.author,
+        date: foundArticle.date,
+      };
+  
+      res.status(200).json({
         status: "success",
         message: "Berhasil mendapatkan artikel",
-        data: foundArticle,
-      };
-    
-      res.status(200).json(response);
+        data: response,
+      });
     } catch (error) { 
       console.error(error); 
       res.status(500).json({
