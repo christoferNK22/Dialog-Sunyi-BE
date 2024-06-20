@@ -7,6 +7,6 @@ router.get('/articles', getArticles);
 
 router.get('/article/:id', getArticle);
 
-router.post("/article/", createArticle);
+router.post("/article", createArticle);
 
 module.exports = router;

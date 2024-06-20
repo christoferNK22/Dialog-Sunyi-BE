@@ -7,6 +7,6 @@ router.get('/classes', getClasses);
 
 router.get('/class/:id', getClass);
 
-router.post("/class/", createClass);
+router.post("/class", createClass);
 
 module.exports = router;

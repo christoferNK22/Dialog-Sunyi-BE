@@ -7,6 +7,6 @@ router.get('/comments', getComments);
 
 router.get('/comment/:id', getComment);
 
-router.post("/comment/", createComment);
+router.post("/comment", createComment);
 
 module.exports = router;
