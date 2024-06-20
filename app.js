@@ -4,6 +4,7 @@ const cors = require('cors');
 const articleRoute = require('./routes/article.route.js');
 const classRoute = require('./routes/class.route.js');
 const commentRoute = require('./routes/comment.route.js');
+const Article = require('./models/article.model.js');
 const app = express();
 
 // middleware
@@ -18,6 +19,16 @@ app.use("/api", commentRoute);
 
 app.get('/', (req, res) => {
     res.send("Welcome to my API");
+});
+
+app.get('/api/article/:id', async (req, res) => {
+  try {
+    const {id} = req.params.id;
+    const article = await Article.findById(id);
+    res.status(200).json(article);
+  } catch (error) {
+    res.status(500).json(article);
+  }
 });
 
 // call port from env
