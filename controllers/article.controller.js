@@ -27,9 +27,8 @@ const getArticles =  async (req, res) => {
 const getArticle = async (req, res) => {
     try {
       const { id } = req.params;
-      const articleId = mongoose.Types.ObjectId(id);
     
-      const foundArticle = await Article.findById(articleId);
+      const foundArticle = await Article.findById(id);
         
       if (!foundArticle) {
         return res.status(404).json({
@@ -38,15 +37,13 @@ const getArticle = async (req, res) => {
         });
       }
 
-      const { _id, name, image, content, author, date } = foundArticle;
-
       const response = {
-        id: _id,
-        name,
-        image,
-        content,
-        author,
-        date,
+        id: foundArticle._id,
+        name: foundArticle.name,
+        image: foundArticle.image,
+        content: foundArticle.image,
+        author: foundArticle.image,
+        date: foundArticle.image,
       };
   
       res.status(200).json({
