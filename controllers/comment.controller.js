@@ -18,7 +18,7 @@ const getComment = async (req, res) => {
     try {
         const { id } = req.params;
         
-        const foundComment = await Comment.findById(commentId);
+        const foundComment = await Comment.findById(id);
         
         if (!foundComment) {
             return res.status(404).json({
