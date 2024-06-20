@@ -17,7 +17,6 @@ const getComments =  async (req, res) => {
 const getComment = async (req, res) => {
     try {
         const { id } = req.params;
-        const commentId = mongoose.Types.ObjectId(id);
         
         const foundComment = await Comment.findById(commentId);
         
